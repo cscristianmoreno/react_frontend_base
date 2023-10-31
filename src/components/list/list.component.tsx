@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { userStruct } from "../../models/user.model";
 import RequestService from "../../services/request.service";
-import { AxiosResponse } from "axios";
+import { AxiosResponse, HttpStatusCode } from "axios";
 import "./list.component.css";
 
 const ListComponent = () => {
@@ -12,7 +12,7 @@ const ListComponent = () => {
         const getAllUsers = async (): Promise<void> => {
             const response: AxiosResponse<userStruct[]> = await RequestService.get("/users");
 
-            if (response.status !== 200) {
+            if (response.status !== HttpStatusCode.Ok) {
                 return;
             }
 
